@@ -2,6 +2,11 @@
 
 **Model the schema, write 34 queries, read the query plans, and then check every claim an AI made about all of it against the database itself.**
 
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="assets/overview-dark.png">
+  <img alt="Four steps: EER model, 34 SQL queries, reading EXPLAIN plans, scoring every AI claim (42 of 44 correct)" src="assets/overview-light.png" width="100%">
+</picture>
+
 Built on the [Sakila](https://dev.mysql.com/doc/sakila/en/) DVD-rental database running on Google Cloud SQL for MySQL 8.0 (deployed with [cloud-sql-sakila-deploy](https://github.com/haokang-uchicago/cloud-sql-sakila-deploy)). Three parts:
 
 | Part | What | Where |
@@ -25,6 +30,12 @@ Built on the [Sakila](https://dev.mysql.com/doc/sakila/en/) DVD-rental database 
 **Should `film(rating)` get an index?** Probably not. `rating` has only 5 distinct values, Q1 needs 223 of 1,000 rows, and the query selects `title` and `description`, so MySQL would still look up every matching row. The index would cost one more B-tree update on every insert or update for little read benefit. (Not created; analysis only.)
 
 ## Checking the AI: scorecard
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="assets/ai-scorecard-dark.png">
+  <img alt="Claims checked against MySQL by task, and the Q26 estimate: AI said about 12,000 row combinations, the plan says about 1,200" src="assets/ai-scorecard-light.png" width="100%">
+</picture>
+
 
 | Task | Claims checked | Correct | What was wrong |
 |---|---|---|---|
@@ -61,6 +72,6 @@ sakila-sql-modeling-and-query-plans/
 
 ## Context
 
-Built for **ADSP 31011 Cloud-Native Data Engineering** (UChicago MS in Applied Data Science, Autumn 2026). All 34 queries in Part 2 were written by me; Claude explained concepts and reviewed them. Part 3 used Claude as required, with every claim verified in MySQL. The repository is private under the course's academic-integrity policy and shared on request.
+Built for **ADSP 31011 Cloud-Native Data Engineering** (UChicago MS in Applied Data Science, Autumn 2026). All 34 queries in Part 2 were written by me; Claude explained concepts and reviewed them. Part 3 used Claude as required, with every claim verified in MySQL. Published with the instructor's permission to showcase the work.
 
 **Hao Kang** · [LinkedIn](https://www.linkedin.com/in/hao-kang-6654b5331/) · [GitHub](https://github.com/haokang-uchicago)
